@@ -1,8 +1,8 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #000;
+  --foreground: #fff;
 }
 
 @theme inline {
@@ -14,8 +14,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #000000;
+    --foreground: #fff;
   }
 }
 
@@ -23,4 +23,39 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.transform-button {
+  background: transparent;
+  border: 1px white solid;
+  padding: 0.5rem 1rem;
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 400;
+  /* text-transform: uppercase; */
+  cursor: pointer;
+  transform: skew(-0deg);
+}
+
+.transform-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 100%;
+  left: 0;
+  background: white;
+  opacity: 0;
+  z-index: -1;
+  transition: all 0.5s;
+}
+
+.transform-button:hover {
+  color: black;
+}
+
+.transform-button:hover::before {
+  left: 0;
+  right: 0;
+  opacity: 1;
 }

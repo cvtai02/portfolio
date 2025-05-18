@@ -1,0 +1,102 @@
+[
+  {
+    "id": "nora",
+    "title": "Nora",
+    "description": "A cozy, minimal and elegant e-commerce store with comprehensive product management, user authentication, and payment processing.",
+    "shortDescription": "A cozy, minimal and elegant store.",
+    "status": "In Progress",
+    "image": "/images/projects/nora.jpg",
+    "tags": ["React TypeScript", "ASP.NET", "Tailwind CSS", "Entity Framework"],
+    "links": {
+      "live": "https://nora-store.example.com",
+      "github": "https://github.com/cvtai02/nora-store"
+    },
+    "features": [
+      "Responsive design for all device sizes",
+      "Product catalog with filtering and searching",
+      "User authentication and account management",
+      "Shopping cart and checkout process",
+      "Admin dashboard for inventory management"
+    ]
+  },
+  {
+    "id": "portfolio",
+    "title": "Personal Portfolio",
+    "description": "A modern and interactive portfolio website built with Next.js and Tailwind CSS to showcase my projects, skills, and experiences as a software engineer.",
+    "shortDescription": "My personal portfolio website to showcase my work and skills.",
+    "status": "Completed",
+    "image": "/images/projects/portfolio.jpg",
+    "tags": ["Next.js", "TypeScript", "Tailwind CSS", "Markdown"],
+    "links": {
+      "live": "https://taichuvan.dev",
+      "github": "https://github.com/cvtai02/portfolio"
+    },
+    "features": [
+      "Responsive design with dark theme",
+      "Dynamic blog with markdown support",
+      "Project showcase with filtering options",
+      "Performance optimized with Next.js features",
+      "SEO friendly structure"
+    ]
+  },
+  {
+    "id": "taskmaster",
+    "title": "TaskMaster",
+    "description": "A comprehensive task management application with features for team collaboration, deadline tracking, and progress visualization. Built with a microservices architecture.",
+    "shortDescription": "A feature-rich task management application for teams.",
+    "status": "Completed",
+    "image": "/images/projects/taskmaster.jpg",
+    "tags": ["React", "Node.js", "Express", "MongoDB", "Docker"],
+    "links": {
+      "live": "https://taskmaster-app.example.com",
+      "github": "https://github.com/cvtai02/taskmaster"
+    },
+    "features": [
+      "Customizable task boards with Kanban view",
+      "Team member assignment and role management",
+      "Real-time notifications and updates",
+      "File attachment and sharing capabilities",
+      "Analytics dashboard with task completion metrics"
+    ]
+  },
+  {
+    "id": "smartbudget",
+    "title": "SmartBudget",
+    "description": "A financial management application that helps users track expenses, set budget goals, and visualize spending patterns with interactive charts and reports.",
+    "shortDescription": "A personal finance tracking application with AI-powered insights.",
+    "status": "In Progress",
+    "image": "/images/projects/smartbudget.jpg",
+    "tags": ["Angular", ".NET Core", "SQL Server", "Chart.js", "Azure"],
+    "links": {
+      "live": "https://smartbudget.example.com",
+      "github": "https://github.com/cvtai02/smartbudget"
+    },
+    "features": [
+      "Expense categorization and tracking",
+      "Budget planning and goal setting",
+      "Financial insights with AI suggestions",
+      "Bill payment reminders",
+      "Multi-currency support"
+    ]
+  },
+  {
+    "id": "webautomation",
+    "title": "Web Automation Framework",
+    "description": "A robust framework for automating web tasks, testing, and data scraping. Built with Selenium and Python, it provides a simple API for complex browser interactions.",
+    "shortDescription": "A powerful tool for automating repetitive web tasks.",
+    "status": "Completed",
+    "image": "/images/projects/webautomation.jpg",
+    "tags": ["Python", "Selenium", "Pytest", "Docker", "CI/CD"],
+    "links": {
+      "live": "https://pypi.org/project/web-automation-framework/",
+      "github": "https://github.com/cvtai02/web-automation-framework"
+    },
+    "features": [
+      "Page object model implementation",
+      "Parallel test execution",
+      "Detailed reporting and screenshots",
+      "Data-driven testing capabilities",
+      "Cross-browser compatibility"
+    ]
+  }
+]
