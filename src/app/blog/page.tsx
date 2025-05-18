@@ -68,9 +68,7 @@ export default async function BlogPage() {
       const posts = postFiles
         .filter((file) => file.endsWith(".md"))
         .map((file) => getPostInfoFromFilename(file))
-        .sort(
-          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-        );
+        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
       return {
         slug: categoryInfo.slug,
@@ -87,8 +85,7 @@ export default async function BlogPage() {
         <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl font-bold text-gray-900">Blog</h1>
           <p className="mt-1 text-lg text-gray-600">
-            Explore articles about software engineering, DevOps, automation and
-            more
+            Explore articles about software engineering, DevOps, automation and more
           </p>
         </div>
       </header>
@@ -100,15 +97,11 @@ export default async function BlogPage() {
             {/* Sidebar with categories */}
             <aside className="w-full md:w-1/4 lg:w-1/5">
               <div className="bg-white rounded-lg shadow p-4 sticky top-6">
-                <h2 className="text-lg font-medium text-gray-900 mb-4">
-                  Categories
-                </h2>
+                <h2 className="text-lg font-medium text-gray-900 mb-4">Categories</h2>
                 <nav className="space-y-2">
                   {categories.map((category) => (
                     <div key={category.slug} className="mb-6">
-                      <h3 className="font-medium text-gray-800 mb-2">
-                        {category.title}
-                      </h3>
+                      <h3 className="font-medium text-gray-800 mb-2">{category.title}</h3>
                       <ul className="pl-4 space-y-1.5">
                         {category.posts.map((post) => (
                           <li key={`${category.slug}-${post.slug}`}>
@@ -130,19 +123,11 @@ export default async function BlogPage() {
             {/* Main content area */}
             <div className="w-full md:w-3/4 lg:w-4/5">
               <div className="bg-white rounded-lg shadow p-6">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                  Welcome to My Blog
-                </h2>
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Welcome to My Blog</h2>
 
-                <p className="text-gray-700 mb-4">
-                  Here you'll find articles on various topics related to
-                  software development and technology. Use the catalog on the
-                  left to browse through different categories and posts.
-                </p>
+                <p className="text-gray-700 mb-4"></p>
 
-                <h3 className="text-xl font-semibold text-gray-900 mb-3 mt-8">
-                  Recent Posts
-                </h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3 mt-8">Recent Posts</h3>
 
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                   {categories.flatMap((category) =>
@@ -152,15 +137,9 @@ export default async function BlogPage() {
                         className="border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
                       >
                         <div className="p-4">
-                          <p className="text-sm text-gray-500 mb-1">
-                            {post.date}
-                          </p>
-                          <h4 className="font-medium text-gray-900 mb-2">
-                            {post.title}
-                          </h4>
-                          <p className="text-sm text-gray-600 mb-3">
-                            From {category.title}
-                          </p>
+                          <p className="text-sm text-gray-500 mb-1">{post.date}</p>
+                          <h4 className="font-medium text-gray-900 mb-2">{post.title}</h4>
+                          <p className="text-sm text-gray-600 mb-3">From {category.title}</p>
                           <Link
                             href={`/blog/${category.slug}/${post.slug}`}
                             className="text-blue-600 hover:text-blue-800 text-sm font-medium inline-flex items-center"

@@ -79,11 +79,7 @@ const defaultDescriptions: Record<string, string> = {
     "Explore how these technologies are changing the way we build software and solve problems.",
 };
 
-export default async function CatalogPage({
-  params,
-}: {
-  params: { catalog: string };
-}) {
+export default async function CatalogPage({ params }: { params: { catalog: string } }) {
   const { catalog } = params;
 
   // Check if the catalog exists
@@ -106,12 +102,11 @@ export default async function CatalogPage({
         defaultDescriptions[catalog] ||
         `# ${getCategoryTitleFromSlug(
           catalog
-        )}\n\nExplore all posts related to ${getCategoryTitleFromSlug(
-          catalog
-        )}.`;
+        )}\n\nExplore all posts related to ${getCategoryTitleFromSlug(catalog)}.`;
     }
   } catch (error) {
     // If file doesn't exist or can't be read, use default
+    console.error(error);
     descriptionContent =
       defaultDescriptions[catalog] ||
       `# ${getCategoryTitleFromSlug(
@@ -159,9 +154,7 @@ export default async function CatalogPage({
                 </svg>
                 Back to Blog
               </Link>
-              <h1 className="text-3xl font-bold text-gray-900">
-                {categoryTitle}
-              </h1>
+              <h1 className="text-3xl font-bold text-gray-900">{categoryTitle}</h1>
             </div>
           </div>
         </div>
@@ -181,15 +174,10 @@ export default async function CatalogPage({
                 />
 
                 {/* Posts list */}
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 mt-8">
-                  All Posts
-                </h2>
+                <h2 className="text-2xl font-bold text-gray-900 mb-6 mt-8">All Posts</h2>
                 <div className="space-y-6">
                   {posts.map((post) => (
-                    <div
-                      key={post.slug}
-                      className="border-b pb-6 last:border-0"
-                    >
+                    <div key={post.slug} className="border-b pb-6 last:border-0">
                       <p className="text-sm text-gray-500 mb-1">{post.date}</p>
                       <h3 className="text-xl font-semibold text-gray-900 mb-2">
                         <Link
@@ -228,22 +216,16 @@ export default async function CatalogPage({
             {/* Sidebar - Related information */}
             <aside className="w-full lg:w-1/3">
               <div className="bg-white rounded-lg shadow p-6 sticky top-6">
-                <h2 className="text-lg font-medium text-gray-900 mb-4">
-                  About this Category
-                </h2>
+                <h2 className="text-lg font-medium text-gray-900 mb-4">About this Category</h2>
                 <p className="text-gray-700 mb-6">
-                  {categoryTitle} is one of our main content categories. Browse
-                  through all {posts.length} posts to explore this topic in
-                  depth.
+                  {categoryTitle} is one of our main content categories. Browse through all{" "}
+                  {posts.length} posts to explore this topic in depth.
                 </p>
 
                 <h3 className="font-medium text-gray-900 mb-3">Recent Posts</h3>
                 <ul className="space-y-3 mb-6">
                   {posts.slice(0, 5).map((post) => (
-                    <li
-                      key={post.slug}
-                      className="border-l-2 border-blue-500 pl-3"
-                    >
+                    <li key={post.slug} className="border-l-2 border-blue-500 pl-3">
                       <Link
                         href={`/blog/${catalog}/${post.slug}`}
                         className="text-blue-600 hover:text-blue-800 hover:underline text-sm"

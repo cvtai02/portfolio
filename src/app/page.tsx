@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import projectsData from '@/data/projects.json';
 import experiencesData from '@/data/experiences.json';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -17,17 +18,17 @@ export default function Home() {
             <p className="text-gray-300"></p>
           </div>
           <div>
-            <a href="/blog" className="transform-button">
+            <Link href="/blog" className="transform-button">
               Blog
-            </a>
-            <a href="/about" className="transform-button">
+            </Link>
+            <Link href="/about" className="transform-button">
               About
-            </a>
+            </Link>
           </div>
         </div>
 
         <ul className="absolute items-stretch h-8 bottom-0 gap-4 mb-4 ms-4 flex justify-center">
-          <a
+          <Link
             className="flex items-stretch"
             href="https://www.facebook.com/cv.tai02"
             target="_blank"
@@ -41,8 +42,8 @@ export default function Home() {
             >
               <path d="M21.95 5.005l-3.306-.004c-3.206 0-5.277 2.124-5.277 5.415v2.495H10.05v4.515h3.317l-.004 9.575h4.641l.004-9.575h3.806l-.003-4.514h-3.803v-2.117c0-1.018.241-1.533 1.566-1.533l2.366-.001.01-4.256z"></path>
             </svg>
-          </a>
-          <a className="flex items-stretch" href="https://github.com/cvtai02" target="_blank">
+          </Link>
+          <Link className="flex items-stretch" href="https://github.com/cvtai02" target="_blank">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="white"
@@ -54,8 +55,8 @@ export default function Home() {
                 <path d="M16,4c-6.62891,0 -12,5.37109 -12,12c0,5.30078 3.4375,9.80078 8.20703,11.38672c0.60156,0.10938 0.82031,-0.25781 0.82031,-0.57812c0,-0.28516 -0.01172,-1.03906 -0.01562,-2.03906c-3.33984,0.72266 -4.04297,-1.60937 -4.04297,-1.60937c-0.54687,-1.38672 -1.33203,-1.75781 -1.33203,-1.75781c-1.08984,-0.74219 0.08203,-0.72656 0.08203,-0.72656c1.20313,0.08594 1.83594,1.23438 1.83594,1.23438c1.07031,1.83594 2.80859,1.30469 3.49219,1c0.10938,-0.77734 0.42188,-1.30469 0.76172,-1.60547c-2.66406,-0.30078 -5.46484,-1.33203 -5.46484,-5.92969c0,-1.3125 0.46875,-2.38281 1.23438,-3.22266c-0.12109,-0.30078 -0.53516,-1.52344 0.11719,-3.17578c0,0 1.00781,-0.32031 3.30078,1.23047c0.95703,-0.26562 1.98438,-0.39844 3.00391,-0.40234c1.01953,0.00391 2.04688,0.13672 3.00391,0.40234c2.29297,-1.55078 3.29688,-1.23047 3.29688,-1.23047c0.65625,1.65234 0.24609,2.875 0.12109,3.17578c0.76953,0.83984 1.23047,1.91016 1.23047,3.22266c0,4.60938 -2.80469,5.62109 -5.47656,5.92188c0.42969,0.36719 0.8125,1.10156 0.8125,2.21875c0,1.60547 -0.01172,2.89844 -0.01172,3.29297c0,0.32031 0.21484,0.69531 0.82422,0.57813c4.76563,-1.58984 8.19922,-6.08594 8.19922,-11.38672c0,-6.62891 -5.37109,-12 -12,-12z"></path>
               </g>
             </svg>
-          </a>
-          <a
+          </Link>
+          <Link
             className="flex items-stretch"
             href="https://www.linkedin.com/in/tai-chu-van-aa3590262/"
             target="_blank"
@@ -69,7 +70,7 @@ export default function Home() {
             >
               <path d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M17,20v19h-6V20H17z M11,14.47c0-1.4,1.2-2.47,3-2.47s2.93,1.07,3,2.47c0,1.4-1.12,2.53-3,2.53C12.2,17,11,15.87,11,14.47z M39,39h-6c0,0,0-9.26,0-10 c0-2-1-4-3.5-4.04h-0.08C27,24.96,26,27.02,26,29c0,0.91,0,10,0,10h-6V20h6v2.56c0,0,1.93-2.56,5.81-2.56 c3.97,0,7.19,2.73,7.19,8.26V39z"></path>
             </svg>
-          </a>
+          </Link>
         </ul>
       </section>
 
@@ -231,7 +232,12 @@ export default function Home() {
                       <div className="absolute inset-0 bg-gradient-to-br from-blue-900/80 to-gray-900 opacity-90 group-hover:opacity-80 transition-all duration-300"></div>
                       <div className="absolute inset-0 flex items-center justify-center">
                         <span className="text-7xl opacity-30 group-hover:opacity-40 transition-opacity duration-300">
-                          ⚡
+                          <Image
+                            src={project.image}
+                            alt={project.title}
+                            fill
+                            className="object-cover object-center"
+                          />
                         </span>
                       </div>
                     </div>
@@ -255,7 +261,7 @@ export default function Home() {
                         ))}
                       </div>
                       <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
-                        <a
+                        <Link
                           href={project.links.live}
                           className="inline-flex items-center gap-1 px-4 py-2 bg-blue-900/30 hover:bg-blue-800/50 text-blue-300 text-sm font-medium rounded-md transition-all duration-200"
                         >
@@ -275,8 +281,8 @@ export default function Home() {
                             <line x1="10" y1="14" x2="21" y2="3"></line>
                           </svg>
                           View Project
-                        </a>
-                        <a
+                        </Link>
+                        <Link
                           href={project.links.github}
                           className="inline-flex items-center gap-1 px-4 py-2 border border-gray-700 hover:border-gray-600 text-gray-400 hover:text-gray-300 text-sm font-medium rounded-md transition-colors duration-200"
                         >
@@ -294,7 +300,7 @@ export default function Home() {
                             <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
                           </svg>
                           GitHub Repo
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>

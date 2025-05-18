@@ -11,7 +11,7 @@ type PostMeta = {
   date: string;
   tags: string[];
   description: string;
-  [key: string]: any;
+  // [key: string]: any;
 };
 
 // Function to parse markdown frontmatter
@@ -84,11 +84,7 @@ async function markdownToHtml(markdown: string) {
   return result.toString();
 }
 
-export default async function PostPage({
-  params,
-}: {
-  params: { catalog: string; post: string };
-}) {
+export default async function PostPage({ params }: { params: { catalog: string; post: string } }) {
   const { catalog, post } = params;
 
   // Find the post file
@@ -169,14 +165,10 @@ export default async function PostPage({
                   <span>{categoryTitle}</span>
                 </div>
 
-                <h1 className="text-3xl font-bold text-gray-900 mb-4">
-                  {meta.title}
-                </h1>
+                <h1 className="text-3xl font-bold text-gray-900 mb-4">{meta.title}</h1>
 
                 {meta.description && (
-                  <p className="text-xl text-gray-500 leading-relaxed">
-                    {meta.description}
-                  </p>
+                  <p className="text-xl text-gray-500 leading-relaxed">{meta.description}</p>
                 )}
 
                 {meta.tags && meta.tags.length > 0 && (
@@ -219,10 +211,7 @@ export default async function PostPage({
                   Back to all {categoryTitle} posts
                 </Link>
 
-                <Link
-                  href="/blog"
-                  className="text-blue-600 hover:text-blue-800"
-                >
+                <Link href="/blog" className="text-blue-600 hover:text-blue-800">
                   View all categories
                 </Link>
               </div>
