@@ -4,11 +4,11 @@
     "title": "Nora",
     "description": "A cozy, minimal and elegant e-commerce store with comprehensive product management, user authentication, and payment processing.",
     "shortDescription": "A cozy, minimal and elegant store.",
-    "image": "/images/nora.jpg",
+    "image": "/images/nora.svg",
     "tags": ["React TypeScript", "ASP.NET", "Tailwind CSS", "Entity Framework"],
     "links": {
       "live": "#",
-      "github": "https://github.com/cvtai02/nora-store"
+      "github": "#"
     },
     "features": [
       "Responsive design for all device sizes",
@@ -17,5 +17,29 @@
       "Shopping cart and checkout process",
       "Admin dashboard for inventory management"
     ]
+  },
+  {
+    "id": "exploding-kittens",
+    "title": "Exploding Kittens",
+    "description": "A fun and interactive card game where players draw cards and try to avoid exploding kittens.",
+    "shortDescription": "A fun and interactive card game.",
+    "image": "/images/exploding-kittens.svg",
+    "tags": ["Flutter", "Java", "MongoDB"],
+    "links": {
+      "live": "#",
+      "github": "#"
+    }
+  },
+  {
+    "id": "video-automation",
+    "title": "Video Automation",
+    "description": "A tool for automating video content creation and editing.",
+    "shortDescription": "Get, translate and upload videos automatically.",
+    "image": "/images/video-automation.svg",
+    "tags": ["Python", "WebRTC"],
+    "links": {
+      "live": "#",
+      "github": "#"
+    }
   }
 ]

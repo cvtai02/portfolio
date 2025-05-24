@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 :root {
   --background: #000;
@@ -38,7 +38,7 @@ body {
 }
 
 .transform-button::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   bottom: 0;
@@ -58,4 +58,176 @@ body {
   left: 0;
   right: 0;
   opacity: 1;
+}
+
+.collaboration-button_highlightBackground__kh_oj {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  bottom: 1px;
+  left: 1px;
+  background: inherit;
+  border-radius: 6px;
+  background: linear-gradient(-90deg, #007cf0, #00dfd8, #ff0080, #007cf0);
+  background-size: 400% 100%;
+  border: none;
+  padding: 0;
+  margin: 0;
+  animation: collaboration-button_backgroundAnim__BC9W2 8s ease-in-out infinite;
+}
+
+@keyframes collaboration-button_backgroundAnim__BC9W2 {
+  50% {
+    background-position: 140% 50%;
+    transform: skew(-2deg);
+  }
+}
+
+.collaboration-button_highlightBackground__kh_oj:after {
+  content: "";
+  position: absolute;
+  background-size: inherit;
+  background-image: inherit;
+  animation: inherit;
+  left: 0;
+  right: 0;
+  top: 2px;
+  height: 100%;
+  filter: blur(0.5rem);
+}
+
+/* Blog specific styles */
+.blog-content h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.blog-content h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.blog-content h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+  color: white;
+}
+
+.blog-content h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.blog-content p {
+  margin-bottom: 1.25rem;
+  line-height: 1.7;
+  color: #d1d5db; /* gray-300 */
+}
+
+.blog-content ul,
+.blog-content ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+  color: #d1d5db;
+}
+
+.blog-content ul {
+  list-style-type: disc;
+}
+
+.blog-content ol {
+  list-style-type: decimal;
+}
+
+.blog-content li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.blog-content pre {
+  background-color: rgba(17, 24, 39, 0.8); /* gray-900 with opacity */
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+}
+
+.blog-content code {
+  font-family: var(--font-geist-mono);
+  font-size: 0.9rem;
+  color: #93c5fd; /* blue-300 */
+}
+
+.blog-content blockquote {
+  border-left: 4px solid #3b82f6; /* blue-500 */
+  background-color: rgba(59, 130, 246, 0.1); /* blue-500 with low opacity */
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: #d1d5db;
+}
+
+.blog-content a {
+  color: #60a5fa; /* blue-400 */
+  text-decoration: none;
+}
+
+.blog-content a:hover {
+  text-decoration: underline;
+  color: #93c5fd; /* blue-300 */
+}
+
+.blog-content img {
+  max-width: 100%;
+  border-radius: 0.5rem;
+  margin: 2rem 0;
+}
+
+.blog-content hr {
+  border-color: #374151; /* gray-700 */
+  margin: 2rem 0;
+}
+
+.blog-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+}
+
+.blog-content th {
+  background-color: rgba(31, 41, 55, 0.8); /* gray-800 with opacity */
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.blog-content td {
+  padding: 0.75rem 1rem;
+  border-top: 1px solid #374151; /* gray-700 */
+  color: #d1d5db;
+}
+
+.blog-content tr:nth-child(even) {
+  background-color: rgba(31, 41, 55, 0.3); /* gray-800 with low opacity */
+}
+
+/* Blog card hover effects */
+.blog-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.3);
 }

@@ -15,6 +15,19 @@ type Category = {
   posts: Post[];
 };
 
+// The PageProps interface is required by Next.js
+export interface PageProps {
+  params: Record<string, never>;
+  searchParams: { [key: string]: string | string[] | undefined };
+}
+
+export async function generateMetadata() {
+  return {
+    title: "Blog",
+    description: "Read the latest articles and tutorials.",
+  };
+}
+
 // Function to get post info from filename
 function getPostInfoFromFilename(filename: string): Post {
   // Remove date and extension, convert to title
@@ -66,7 +79,7 @@ export default async function BlogPage() {
 
       // Get posts in this category
       const posts = postFiles
-        .filter((file) => file.endsWith(".md"))
+        .filter((file) => file.endsWith(".md") && !file.includes("description.md"))
         .map((file) => getPostInfoFromFilename(file))
         .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
@@ -78,105 +91,224 @@ export default async function BlogPage() {
     })
   );
 
+  // Get all posts for featured section
+  const allPosts = categories
+    .flatMap((category) =>
+      category.posts.map((post) => ({
+        ...post,
+        category: {
+          slug: category.slug,
+          title: category.title,
+        },
+      }))
+    )
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+  // Get the featured posts (most recent 6)
+  const featuredPosts = allPosts.slice(0, 6);
+
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold text-gray-900">Blog</h1>
-          <p className="mt-1 text-lg text-gray-600">
-            Explore articles about software engineering, DevOps, automation and more
-          </p>
-        </div>
-      </header>
+    <div>
+      {/* Featured posts section */}
+      <div className="mb-12">
+        <h2 className="text-3xl font-bold text-white mb-8">Featured Articles</h2>
 
-      {/* Main content */}
-      <main className="flex-grow">
-        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row gap-8">
-            {/* Sidebar with categories */}
-            <aside className="w-full md:w-1/4 lg:w-1/5">
-              <div className="bg-white rounded-lg shadow p-4 sticky top-6">
-                <h2 className="text-lg font-medium text-gray-900 mb-4">Categories</h2>
-                <nav className="space-y-2">
-                  {categories.map((category) => (
-                    <div key={category.slug} className="mb-6">
-                      <h3 className="font-medium text-gray-800 mb-2">{category.title}</h3>
-                      <ul className="pl-4 space-y-1.5">
-                        {category.posts.map((post) => (
-                          <li key={`${category.slug}-${post.slug}`}>
-                            <Link
-                              href={`/blog/${category.slug}/${post.slug}`}
-                              className="text-blue-600 hover:text-blue-800 hover:underline text-sm"
-                            >
-                              {post.title}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
+        {featuredPosts.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Main featured post */}
+            <div className="col-span-1 md:col-span-2">
+              <div className="backdrop-blur-sm rounded-xl overflow-hidden shadow-lg border border-gray-800/50 transition-all hover:border-blue-500/30 hover:shadow-blue-900/20">
+                <Link
+                  href={`/blog/${featuredPosts[0].category.slug}/${featuredPosts[0].slug}`}
+                  className="block group"
+                >
+                  <div className="p-6">
+                    <div className="flex items-center mb-3">
+                      <span className="text-xs text-blue-400 border border-blue-400/30 bg-blue-400/10 px-2 py-1 rounded-md">
+                        {featuredPosts[0].category.title}
+                      </span>
+                      <span className="mx-2 text-gray-500">•</span>
+                      <span className="text-sm text-gray-400">{featuredPosts[0].date}</span>
                     </div>
-                  ))}
-                </nav>
-              </div>
-            </aside>
-
-            {/* Main content area */}
-            <div className="w-full md:w-3/4 lg:w-4/5">
-              <div className="bg-white rounded-lg shadow p-6">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Welcome to My Blog</h2>
-
-                <p className="text-gray-700 mb-4"></p>
-
-                <h3 className="text-xl font-semibold text-gray-900 mb-3 mt-8">Recent Posts</h3>
-
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                  {categories.flatMap((category) =>
-                    category.posts.slice(0, 2).map((post) => (
-                      <div
-                        key={`${category.slug}-${post.slug}-card`}
-                        className="border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
+                      {featuredPosts[0].title}
+                    </h3>
+                    <p className="text-gray-400 mb-4">
+                      Dive deep into the principles and practices of{" "}
+                      {featuredPosts[0].title.toLowerCase()}
+                      that can transform your software development approach.
+                    </p>
+                    <div className="inline-flex items-center gap-1 text-blue-400 group-hover:text-blue-500 transition-colors">
+                      Read article
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       >
-                        <div className="p-4">
-                          <p className="text-sm text-gray-500 mb-1">{post.date}</p>
-                          <h4 className="font-medium text-gray-900 mb-2">{post.title}</h4>
-                          <p className="text-sm text-gray-600 mb-3">From {category.title}</p>
-                          <Link
-                            href={`/blog/${category.slug}/${post.slug}`}
-                            className="text-blue-600 hover:text-blue-800 text-sm font-medium inline-flex items-center"
-                          >
-                            Read more
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="h-4 w-4 ml-1"
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                          </Link>
-                        </div>
-                      </div>
-                    ))
-                  )}
-                </div>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+                </Link>
               </div>
             </div>
+            {/* Secondary featured posts */}
+            {featuredPosts.slice(1, 5).map((post) => (
+              <div
+                key={post.slug}
+                className="backdrop-blur-sm rounded-xl overflow-hidden shadow-lg border border-gray-800/50 transition-all hover:border-blue-500/30 hover:shadow-blue-900/20"
+              >
+                <Link
+                  href={`/blog/${post.category.slug}/${post.slug}`}
+                  className="block p-6 h-full group"
+                >
+                  <div className="flex items-center mb-3">
+                    <span className="text-xs text-blue-400 border border-blue-400/30 bg-blue-400/10 px-2 py-1 rounded-md">
+                      {post.category.title}
+                    </span>
+                    <span className="mx-2 text-gray-500">•</span>
+                    <span className="text-sm text-gray-400">{post.date}</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
+                    {post.title}
+                  </h3>
+                  <div className="inline-flex items-center gap-1 text-blue-400 group-hover:text-blue-500 transition-colors">
+                    Read article
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </div>
+                </Link>
+              </div>
+            ))}
           </div>
-        </div>
-      </main>
+        )}
+      </div>
 
-      {/* Footer */}
-      <footer className="bg-white border-t border-gray-200 mt-12">
-        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-gray-500 text-sm">
-            © {new Date().getFullYear()} My Tech Blog. All rights reserved.
-          </p>
+      {/* Browse by category section */}
+      <div className="mb-12">
+        <h2 className="text-2xl font-bold text-white mb-8">Browse by Category</h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {categories.map((category) => (
+            <Link
+              href={`/blog/${category.slug}`}
+              key={category.slug}
+              className="backdrop-blur-sm rounded-xl overflow-hidden shadow-lg border border-gray-800/50 p-6 transition-all hover:border-blue-500/30 hover:shadow-blue-900/20 group"
+            >
+              <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
+                {category.title}
+              </h3>
+              <p className="text-gray-400 text-sm mb-2">{category.posts.length} articles</p>
+              <div className="inline-flex items-center gap-1 text-blue-400 group-hover:text-blue-500 transition-colors">
+                View all
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </div>
+            </Link>
+          ))}
         </div>
-      </footer>
+      </div>
+
+      {/* Recent articles by category */}
+      <div>
+        <h2 className="text-2xl font-bold text-white mb-8">Latest Articles</h2>
+
+        <div className="space-y-12">
+          {categories.map((category) => (
+            <div key={category.slug} className="mb-12">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-xl font-bold text-white">{category.title}</h3>
+                <Link
+                  href={`/blog/${category.slug}`}
+                  className="text-blue-400 hover:text-blue-500 inline-flex items-center gap-1 transition-colors"
+                >
+                  View all
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </Link>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {category.posts.slice(0, 3).map((post) => (
+                  <div
+                    key={post.slug}
+                    className="backdrop-blur-sm rounded-xl overflow-hidden shadow-lg border border-gray-800/50 transition-all hover:border-blue-500/30 hover:shadow-blue-900/20"
+                  >
+                    <Link href={`/blog/${category.slug}/${post.slug}`} className="block p-6 group">
+                      <div className="flex items-center mb-3">
+                        <span className="text-xs text-gray-400">{post.date}</span>
+                      </div>
+                      <h4 className="text-lg font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
+                        {post.title}
+                      </h4>
+                      <div className="inline-flex items-center gap-1 text-blue-400 group-hover:text-blue-500 transition-colors">
+                        Read article
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <line x1="5" y1="12" x2="19" y2="12"></line>
+                          <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                      </div>
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

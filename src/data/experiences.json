@@ -1,53 +1,17 @@
 [
   {
-    "id": "fullstackdev",
-    "company": "Tech Innovations Inc.",
-    "title": "Full Stack Developer",
-    "location": "Remote",
-    "startDate": "2023-06",
-    "endDate": "Present",
-    "description": "Working on enterprise-level web applications using modern technologies and best practices.",
-    "responsibilities": [
-      "Developed and maintained RESTful APIs using ASP.NET Core",
-      "Created responsive frontend interfaces with React and TypeScript",
-      "Implemented CI/CD pipelines with GitHub Actions",
-      "Optimized database queries and improved application performance",
-      "Collaborated with cross-functional teams to deliver high-quality features"
-    ],
-    "technologies": ["React", "TypeScript", "ASP.NET Core", "SQL Server", "Azure", "GitHub Actions"]
-  },
-  {
-    "id": "webdev",
-    "company": "Digital Solutions LLC",
-    "title": "Web Developer",
-    "location": "Boston, MA",
-    "startDate": "2022-02",
-    "endDate": "2023-05",
-    "description": "Contributed to multiple client projects, focusing on frontend development and UI/UX improvements.",
-    "responsibilities": [
-      "Built modern and responsive user interfaces with React and Angular",
-      "Implemented pixel-perfect designs from Figma mockups",
-      "Collaborated with designers and backend developers to ensure smooth integration",
-      "Developed reusable component libraries to improve development efficiency",
-      "Participated in code reviews and provided mentorship to junior developers"
-    ],
-    "technologies": ["React", "Angular", "JavaScript", "SCSS", "Node.js", "Git", "Figma"]
-  },
-  {
     "id": "intern",
-    "company": "InnoTech Systems",
+    "company": "NashTech",
     "title": "Software Engineering Intern",
-    "location": "Remote",
-    "startDate": "2021-05",
-    "endDate": "2022-01",
+    "location": "HCM City, Vietnam",
+    "startDate": "2025-03",
+    "endDate": "2025-06",
     "description": "Assisted in the development and testing of web applications while learning industry best practices.",
     "responsibilities": [
-      "Contributed to feature development for the company's main product",
-      "Created automated tests to improve code quality and prevent regressions",
-      "Fixed bugs and implemented small feature enhancements",
-      "Participated in daily stand-up meetings and sprint planning",
-      "Documented code and prepared technical documentation"
+      "Learn and apply software development best practices",
+      "Collaborate with senior developers to design and implement features",
+      "Participated in daily stand-up meetings and sprint planning"
     ],
-    "technologies": ["JavaScript", "HTML", "CSS", "React", "Git", "Jest", "Agile methodologies"]
+    "technologies": [".NET", "JavaScript", "HTML", "CSS", "React", "Agile methodologies"]
   }
 ]

@@ -1,12 +1,12 @@
-import Image from 'next/image';
-import projectsData from '@/data/projects.json';
-import experiencesData from '@/data/experiences.json';
-import Link from 'next/link';
+import Image from "next/image";
+import projectsData from "@/data/projects.json";
+import experiencesData from "@/data/experiences.json";
+import Link from "next/link";
 
 export default function Home() {
   return (
     <div className="font-[family-name:var(--font-geist-sans)]">
-      <section className="bg-[url(images/deskbg.jpg)] relative bg-no-repeat bg-cover text-white h-screen grid grid-cols-1 ">
+      <section className="bg-[url(/images/deskbg.jpg)] relative bg-no-repeat bg-cover text-white h-screen grid grid-cols-1 ">
         <div className="absolute inset-0 z-10 h-full bg-gradient-to-b from-black to-black/0 to-20% pointer-events-none"></div>
         <div className="w-full mx-auto flex flex-col items-start px-12 md:px-24 justify-center bg-gradient-to-r from-black to-transparent">
           <h1 className="text-5xl font-bold mb-2">Tai Chu Van</h1>
@@ -215,93 +215,87 @@ export default function Home() {
 
         <div className="absolute inset-0 z-10 h-full bg-gradient-to-t from-black to-black/0 to-20% pointer-events-none"></div>
       </section>
-      <section id="projects" className="min-h-screen  text-white relative">
+      <section id="projects" className="relative">
         <div className="mx-auto px-6 relative z-20">
           <div className="">
             <h2 className="text-4xl font-bold mb-16 text-center">
               <span className="border-b-2 border-white pb-2">My Projects</span>
             </h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-              {projectsData.map(project => (
+              {projectsData.map((project) => (
                 <div
                   key={project.id}
                   className="group backdrop-blur-sm rounded-xl overflow-hidden shadow-2xl border border-gray-800/50 transition-all duration-300 hover:border-blue-500/30 hover:shadow-blue-900/20"
                 >
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-                    <div className="relative h-64 lg:h-full overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/80 to-gray-900 opacity-90 group-hover:opacity-80 transition-all duration-300"></div>
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="text-7xl opacity-30 group-hover:opacity-40 transition-opacity duration-300">
-                          <Image
-                            src={project.image}
-                            alt={project.title}
-                            fill
-                            className="object-cover object-center"
-                          />
-                        </span>
-                      </div>
+                  {/* <div className="bg-[#b7d3de] p-8 relative"> */}
+
+                  <div className="p-8">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      width={1}
+                      height={1}
+                      className="-z-10 absolute h-full top-0 right-0 w-auto object-cover rounded-lg "
+                    />
+                    <div className="flex justify-between items-center mb-2">
+                      <h3 className="text-2xl font-bold group-hover:text-blue-400 transition-colors duration-300">
+                        {project.title}
+                      </h3>
                     </div>
-                    <div className="p-8">
-                      <div className="flex justify-between items-center mb-2">
-                        <h3 className="text-2xl font-bold group-hover:text-blue-400 transition-colors duration-300">
-                          {project.title}
-                        </h3>
-                      </div>
-                      <p className="text-gray-400 mb-6 text-sm leading-relaxed">
-                        {project.shortDescription}
-                      </p>
-                      <div className="flex flex-wrap gap-2 mb-6">
-                        {project.tags.map((tag, index) => (
-                          <span
-                            key={index}
-                            className="bg-gray-800/80 text-gray-300 text-xs px-2.5 py-1 rounded"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                      <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
-                        <Link
-                          href={project.links.live}
-                          className="inline-flex items-center gap-1 px-4 py-2 bg-blue-900/30 hover:bg-blue-800/50 text-blue-300 text-sm font-medium rounded-md transition-all duration-200"
+                    <p className="text-gray-400 mb-6 text-sm leading-relaxed">
+                      {project.shortDescription}
+                    </p>
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {project.tags.map((tag, index) => (
+                        <span
+                          key={index}
+                          className="bg-gray-800/80 text-gray-300 text-xs px-2.5 py-1 rounded"
                         >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
-                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                            <polyline points="15 3 21 3 21 9"></polyline>
-                            <line x1="10" y1="14" x2="21" y2="3"></line>
-                          </svg>
-                          View Project
-                        </Link>
-                        <Link
-                          href={project.links.github}
-                          className="inline-flex items-center gap-1 px-4 py-2 border border-gray-700 hover:border-gray-600 text-gray-400 hover:text-gray-300 text-sm font-medium rounded-md transition-colors duration-200"
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
+                      <Link
+                        href={project.links.live}
+                        className="inline-flex items-center gap-1 px-4 py-2 bg-blue-900/30 hover:bg-blue-800/50 text-blue-300 text-sm font-medium rounded-md transition-all duration-200"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
-                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                          </svg>
-                          GitHub Repo
-                        </Link>
-                      </div>
+                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                          <polyline points="15 3 21 3 21 9"></polyline>
+                          <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                        View Project
+                      </Link>
+                      <Link
+                        href={project.links.github}
+                        className="inline-flex items-center gap-1 px-4 py-2 border border-gray-700 hover:border-gray-600 text-gray-400 hover:text-gray-300 text-sm font-medium rounded-md transition-colors duration-200"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                        </svg>
+                        GitHub Repo
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -312,14 +306,14 @@ export default function Home() {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="min-h-screen text-white relative py-20">
+      <section id="experience" className=" text-white relative py-20">
         <div className="mx-auto px-6 relative z-20">
           <h2 className="text-4xl font-bold mb-16 text-center">
             <span className="border-b-2 border-white pb-2">Work Experience</span>
           </h2>
 
           <div className="space-y-12">
-            {experiencesData.map(exp => (
+            {experiencesData.map((exp) => (
               <div
                 key={exp.id}
                 className="backdrop-blur-sm rounded-xl overflow-hidden shadow-2xl border border-gray-800/50 transition-all duration-300 hover:border-purple-500/30 hover:shadow-purple-900/20 p-8"
